@@ -1,0 +1,303 @@
+initialize() {
+    // Ecology Parameters:
+    defineCfgParam("DENSITY", 1000);  // Not a fixed density, just an approximate average.
+    defineCfgParam("ISLAND_SIDE_LENGTH", 2.0);  // In km.
+    defineCfgParam("INTERACTION_DISTANCE", 75 / (ISLAND_SIDE_LENGTH * 1000));  // The interaction distance for competiton and mating.
+    defineCfgParam("AVG_DISPERSAL", 250 / (ISLAND_SIDE_LENGTH * 1000));  // Avg. dispersal speed.
+    defineCfgParam("MONTHLY_SURVIVAL_RATE", 0.9);  // Base survival rate.
+    defineCfgParam("LITTER_SIZE", 4.0);  // Average litter size.
+    defineCfgParam("ITINERANT_FREQ", 0.1);  // Percent of population per time step.
+    defineCfgParam("ITINERANT_DISPERSAL_MULTIPLIER", 2.0);  // Itinereants disperse further than newborns.
+
+    // Drive Parameters:
+    defineCfgParam("RELEASE_PERCENTAGE", 0.1);  // As a percentage of the population.
+    defineCfgParam("DRIVE_FITNESS", 1.0);
+    defineCfgParam("DRIVE_EFFICIENCY", 0.95);
+    defineCfgParam("RESISTANCE_RATE", 0.0);
+    defineCfgParam("R1_RATE", 0.0);  // Relative probability of function preserving resistance allele.
+
+    // Drive Type:
+    defineCfgParam("FEMALE_FERTILITY_TARGET_HOMING", T);
+    defineCfgParam("VIABILITY_TARGET_HOMING", F);
+    defineCfgParam("Y_SHREDDER", F);
+
+    // Other:
+    defineConstant("COLORFUL_OUTPUT", F);  // Individuals are colored according to their genotype if turned on.
+    defineCfgParam("TRADITIONAL_CONTROL_RATE", 0.0);
+
+    // End params.
+
+    // This simulation will use a non-Wright-Fisher model.
+    initializeSLiMModelType("nonWF");
+    // Spatial sim with reprising boundaries.
+    initializeSLiMOptions(dimensionality="xy");
+    // Simulate sexual reproduction; A for simulating an autosome.
+    initializeSex("A");
+
+    // Four variations: Wild type, drive, r1 resistance, r2 resistance.
+    wt = initializeMutationType("m1", 0.5, "f", 0.0);
+    dr = initializeMutationType("m2", 0.5, "f", 0.0);
+    r1 = initializeMutationType("m3", 0.5, "f", 0.0);
+    r2 = initializeMutationType("m4", 0.5, "f", 0.0);
+    variations = c(wt, dr, r1, r2);
+
+    // Variations are all part of g1 genome element, which has 1 locus.
+    initializeGenomicElementType("g1", variations, c(1, 1, 1, 1));
+    initializeGenomicElement(g1, 0, 0);
+
+    // These variations overwrite one another.
+    variations.mutationStackPolicy = "l";
+    variations.mutationStackGroup = 1;
+
+    // No mutation or recombination in this model.
+    initializeMutationRate(0);
+    initializeRecombinationRate(0);
+
+    // Spatial competition
+    sigma = INTERACTION_DISTANCE / 3;
+    initializeInteractionType(1, "xy", reciprocal=T, maxDistance=INTERACTION_DISTANCE);
+    // Interaction between individuals is on gaussian curve with maximum 1 and std deviation of one third of COMPETITION_DISTANCE.
+    i1.setInteractionFunction("n", 1, sigma);
+
+    // Spatial mate choice. Function evaluates to 1 for all individuals in range and 0 for individuals not in range.
+    initializeInteractionType(2, "xy", reciprocal=T, maxDistance=INTERACTION_DISTANCE);
+
+    cap = asInteger(DENSITY * ISLAND_SIDE_LENGTH^2);
+    defineConstant("CAPACITY", cap);  // Expected capacity based on area.
+
+    /*
+     The density coefficient tuning parameter is set such that the model should have the desired density given the other parameters.
+     Density coefficient is derived from the recurence relationship:
+     pop(t+1) = surviving non-itinerents * base survival rate + (surviving itinerants + newborns) * density survival rate
+     pop(t+1) = pop(t) * (1 - ITINERANT_FREQ) * MONTHLY_SURVIVAL_RATE + pop(t) * (LITTER_SIZE / 2 + ITINERANT_FREQ) * density_survival
+     Where: density_survival = MONTHLY_SURVIVAL_RATE - DENSITY_FACTOR * avg_expected_comp
+     Where: avg_expected_comp = 2 * PI * sigma^2 * pop * (1 + LITTER_SIZE / 2)
+     This last term being the polar integral of the density competition function over the area of competition.
+     When the population is at equilibrium, p(t+1) = p(t) = CAPACITY, so the equations can be solved for the density coefficient.
+    */
+    avg_expected_comp = 2 * PI * sigma^2 * cap * (1 + LITTER_SIZE / 2);
+    density_factor = (MONTHLY_SURVIVAL_RATE * (LITTER_SIZE + 2) - 2) / (avg_expected_comp * (LITTER_SIZE + 2 * ITINERANT_FREQ));
+    defineConstant("DENSITY_FACTOR", density_factor);
+}
+
+//// HELPER FUNC FOR CONSTANTS THAT MAY ASLO BE CONFIGURED VIA COMMAND LINE.
+function (void) defineCfgParam(string$ name, lifs value) {
+    if (!exists(name))
+        defineConstant(name, value);
+}
+
+//// EVALUATE SPATIAL INTERACTIONS FOR REPRODUCTION.
+late () {
+    i2.evaluate();
+}
+
+//// REPRODUCTION RULES.
+reproduction(NULL, "F") {
+    if (FEMALE_FERTILITY_TARGET_HOMING)
+        if (individual.countOfMutationsOfType(m2) + individual.countOfMutationsOfType(m4) == 2)
+            return;
+    neighbors = i2.nearestNeighbors(individual, subpop.individualCount);
+    neighbors = neighbors[neighbors.sex == "M"];
+    // If no mates are in mate detection range, cannot mate.
+    if (size(neighbors) == 0)
+        return;
+    mate = sample(neighbors, 1);
+    litterSize = rpois(1, LITTER_SIZE);
+    for (i in seqLen(litterSize)) {
+        if (Y_SHREDDER & mate.countOfMutationsOfType(m2))
+            // Add individuals with a biased sex ratio.
+            subpop.addCrossed(individual, mate, 0.5 * (1 - DRIVE_EFFICIENCY));
+        else
+            // Add individuals with a standard sex ratio.
+            subpop.addCrossed(individual, mate);
+    }
+}
+
+//// GENE DRIVE IMPLEMENTATION.
+modifyChild() {
+    if (Y_SHREDDER) {
+        // Genome1 is the X, Genome2 is the Y in males.
+        if (child.sex == "F") {
+            // Force inheritence of X from father.
+            if (parent2.genome1.countOfMutationsOfType(m1))
+                childGenome2.addNewDrawnMutation(m1, 0);
+            if (parent2.genome1.countOfMutationsOfType(m2))
+                childGenome2.addNewDrawnMutation(m2, 0);
+        }
+        if (child.sex == "M")
+            // Force inheritence of Y from father. The only possible variation for Y is wt.
+            childGenome2.addNewDrawnMutation(m1, 0);
+    }
+    if (VIABILITY_TARGET_HOMING | FEMALE_FERTILITY_TARGET_HOMING) {
+        // These drives are homing drives.
+        parent = c(parent1, parent2);
+        child_chromosome = c(childGenome1, childGenome2);
+        // Germline:
+        for (i in c(0, 1))
+            // Determine presence of drive in this parent and wt in the chromosome inherited from this parent.
+            if (sum(parent[i].genomes.countOfMutationsOfType(m2)) & sum(child_chromosome[i].countOfMutationsOfType(m1))) {
+                if (runif(1) < RESISTANCE_RATE) {
+                    // Resistance formation:
+                    if (runif(1) < R1_RATE)
+                        child_chromosome[i].addNewDrawnMutation(m3, 0);
+                    else
+                        child_chromosome[i].addNewDrawnMutation(m4, 0);
+                }
+                else if (runif(1) < DRIVE_EFFICIENCY)
+                    // Homing succeeds:
+                    child_chromosome[i].addNewDrawnMutation(m2, 0);
+            }
+
+        if (VIABILITY_TARGET_HOMING)
+            if (child.countOfMutationsOfType(m2) + child.countOfMutationsOfType(m4) == 2)
+                return F;
+    }
+
+    // Set child position.
+    do {
+        r = rexp(1, AVG_DISPERSAL);
+        theta = runif(1, 0, 2 * PI);
+        position = parent1.spatialPosition + c(r * sin(theta), r * cos(theta));
+    } while (!child.subpopulation.pointInBounds(position));
+    child.setSpatialPosition(position);
+
+    if (COLORFUL_OUTPUT) {
+        // Set color of child according to genotype.
+        if (child.countOfMutationsOfType(m3) > 0)
+            child.color = "red";
+        else if (child.countOfMutationsOfType(m2) == 1)
+            child.color = "cyan";
+        else if (child.countOfMutationsOfType(m4) > 0)
+            child.color = "yellow";
+        else if (child.countOfMutationsOfType(m2) == 2)
+            child.color = "purple";
+        else
+            child.color = "white";
+    }
+    return T;
+}
+
+//// FITNESS AND MOVEMENT.
+2: early() {
+    i1.evaluate();
+    all = p1.individuals;
+    // By default, all individuals survive at a base rate.
+    all.fitnessScaling = MONTHLY_SURVIVAL_RATE;
+    for (ind in all) {
+        if (ind.age == 0 | runif(1) < ITINERANT_FREQ) {
+            // Itinerants and juviniles have a lower rate of survival.
+            competition = i1.totalOfNeighborStrengths(ind);
+            // Apply a correction for competition on the edges of the modeled area,
+            // such that individuals near the edge do not have an advantage.
+            edge_fix_x = 1.0;
+            edge_fix_y = 1.0;
+            if (1 - ind.x < INTERACTION_DISTANCE) {
+                dist = (1 - ind.x) / INTERACTION_DISTANCE;
+                edge_fix_x = 1 - (1 - cos((1 - dist) * PI / 2)) / 2;
+            }
+            if (ind.x < INTERACTION_DISTANCE) {
+                dist = ind.x / INTERACTION_DISTANCE;
+                edge_fix_x = 1 - (1 - cos((1 - dist) * PI / 2)) / 2;
+            }
+            if (1 - ind.y < INTERACTION_DISTANCE) {
+                dist = (1 - ind.y) / INTERACTION_DISTANCE;
+                edge_fix_y = 1 - (1 - cos((1 - dist) * PI / 2)) / 2;
+            }
+            if (ind.y < INTERACTION_DISTANCE) {
+                dist = ind.y / INTERACTION_DISTANCE;
+                edge_fix_y = 1 - (1 - cos((1 - dist) * PI / 2)) / 2;
+            }
+            competition = competition / (edge_fix_x * edge_fix_y);
+            ind.fitnessScaling = max(0.0, MONTHLY_SURVIVAL_RATE - DENSITY_FACTOR * competition);
+
+            if (ind.age > 0) {
+                // Itinerant movement.
+                do {
+                    r = ITINERANT_DISPERSAL_MULTIPLIER * rexp(1, AVG_DISPERSAL);
+                    theta = runif(1, 0, 2 * PI);
+                    position = ind.spatialPosition + c(r * sin(theta), r * cos(theta));
+                } while (!ind.subpopulation.pointInBounds(position));
+                ind.setSpatialPosition(position);
+            }
+        }
+        if (ind.countOfMutationsOfType(m2))
+            // Drive fitness cost.
+            ind.fitnessScaling = ind.fitnessScaling * DRIVE_FITNESS;
+
+        if (runif(1) < TRADITIONAL_CONTROL_RATE)
+            // A very minimal representation of traditional control measures.
+            ind.fitnessScaling = 0;
+    }
+}
+
+//// INITIAL POPULATION SETUP.
+1 early() {
+    // Add a population of randomly distributed wild type adults at the configured capacity.
+    sim.addSubpop("p1", CAPACITY);
+    p1.individuals.age = 1;
+    // Add m1 to the chromosomes to indicate wild type.
+    p1.individuals.genomes.addNewDrawnMutation(m1, 0);
+    p1.individuals.x = runif(p1.individualCount);
+    p1.individuals.y = runif(p1.individualCount);
+    p1.individuals.color = "white";
+}
+
+//// GENE DRIVE INTRODUCTION.
+21 early() {
+    // Introduce a group of gene drive individuals to the population.
+    // Number of individuals is a percentage of the population size.
+    // Introduced individuals immediately experience density dependent competition.
+    drive = sample(p1.individuals, asInteger(p1.individuals.size() * RELEASE_PERCENTAGE));
+    // Individuals start as heterozygotes for the drive.
+    drive.genome1.addNewDrawnMutation(m2, 0);
+    drive.color = "cyan";
+    i1.evaluate();
+    for (ind in drive) {
+        competition = i1.totalOfNeighborStrengths(ind);
+        // Apply correction for competition on the edges of the modeled area
+        edge_fix_x = 1.0;
+        edge_fix_y = 1.0;
+        if (1 - ind.x < INTERACTION_DISTANCE) {
+            dist = (1 - ind.x) / INTERACTION_DISTANCE;
+            edge_fix_x = 1 - (1 - cos((1 - dist) * PI / 2)) / 2;
+        }
+        if (ind.x < INTERACTION_DISTANCE) {
+            dist = ind.x / INTERACTION_DISTANCE;
+            edge_fix_x = 1 - (1 - cos((1 - dist) * PI / 2)) / 2;
+        }
+        if (1 - ind.y < INTERACTION_DISTANCE) {
+            dist = (1 - ind.y) / INTERACTION_DISTANCE;
+            edge_fix_y = 1 - (1 - cos((1 - dist) * PI / 2)) / 2;
+        }
+        if (ind.y < INTERACTION_DISTANCE) {
+            dist = ind.y / INTERACTION_DISTANCE;
+            edge_fix_y = 1 - (1 - cos((1 - dist) * PI / 2)) / 2;
+        }
+        competition = competition / (edge_fix_x * edge_fix_y);
+        ind.fitnessScaling = max(0.0, MONTHLY_SURVIVAL_RATE - DENSITY_FACTOR * competition) * DRIVE_FITNESS;
+    }
+}
+
+//// PROGRAM OUTPUT.
+late() {
+    rate_drive = sum(sim.mutationFrequencies(NULL, sim.mutationsOfType(m2)));
+    rate_resistance = sum(sim.mutationFrequencies(NULL, sim.mutationsOfType(m3))) +
+                        sum(sim.mutationFrequencies(NULL, sim.mutationsOfType(m4)));
+    catn("#OUTPUT: " + sim.generation + " " + p1.individualCount + " " + rate_drive + " " + rate_resistance);
+
+    // End conditions.
+    if (!p1.individualCount) {
+        catn("OUTCOME: DRIVE SUCCESS");
+        sim.simulationFinished();
+    }
+    if (sim.generation > 21 & rate_drive == 0.0 & p1.individualCount > CAPACITY / 4) {
+        catn("OUTCOME: DRIVE LOST");
+        sim.simulationFinished();
+    }
+}
+
+//// MAIN END CONDITION.
+520 late() {
+    catn("OUTCOME: DRIVE PERSISTS");
+    sim.simulationFinished();
+}
