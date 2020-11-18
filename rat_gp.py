@@ -135,6 +135,9 @@ class Rat_GP():
         if cpu:
             model_to_save = self.model.cpu()
         torch.save(model_to_save.state_dict(), f"{filename}.pth")
+        if cpu:
+            if cuda_available():
+                self.model.cuda()
         print("Model saved.")
 
     def load(self, filename):
@@ -149,7 +152,7 @@ class Rat_GP():
             except FileNotFoundError:
                 raise FileNotFoundError(f"{filename} not found.")
         # Torch requires that a loaded model be "retrained" on the training data.
-        self.train(10)
+        self.train(1)
         print("Model loaded.")
 
     def train(self, num_iterations):
@@ -180,7 +183,8 @@ class Rat_GP():
                 if (i+1) % 100 == 0:
                     print(f"Iter {i + 1}/{num_iterations} - Loss: {loss.item()}")
                 optimizer.step()
-                empty_cache()
+                if cuda_available():
+                    empty_cache()
         # Set the model to evaluation mode.
         self.model.eval()
         self.likelihood.eval()
