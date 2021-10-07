@@ -1,0 +1,1002 @@
+1000
+Sorted times to suppress (95% efficiency),Sorted times to suppress (85% efficiency)
+145,238
+146,242
+146,257
+147,258
+147,262
+148,270
+149,271
+151,271
+151,273
+151,274
+151,276
+152,277
+152,280
+153,281
+153,283
+153,288
+153,289
+153,290
+153,290
+153,291
+154,291
+154,292
+154,292
+154,293
+154,294
+154,296
+154,297
+154,298
+155,300
+155,301
+155,301
+155,303
+155,306
+155,306
+155,307
+155,307
+155,307
+156,307
+156,309
+156,309
+156,309
+156,310
+156,310
+156,311
+156,312
+157,312
+157,314
+157,315
+157,315
+157,315
+157,316
+157,317
+157,318
+157,319
+157,319
+158,319
+158,319
+158,322
+158,323
+158,323
+159,324
+159,324
+159,325
+159,327
+159,327
+159,327
+159,328
+159,328
+159,328
+159,329
+159,329
+159,330
+160,330
+160,330
+160,330
+160,331
+160,331
+160,331
+160,332
+160,333
+160,333
+160,333
+160,334
+160,334
+160,334
+160,336
+160,336
+160,336
+160,337
+160,337
+160,338
+161,340
+161,340
+161,340
+161,340
+161,341
+161,341
+161,341
+161,341
+161,341
+161,342
+161,344
+161,344
+161,344
+162,345
+162,346
+162,346
+162,347
+162,347
+162,347
+162,348
+162,348
+162,349
+162,350
+162,350
+162,351
+162,352
+162,352
+162,353
+162,353
+162,353
+163,354
+163,354
+163,355
+163,355
+163,357
+163,357
+163,359
+163,361
+163,361
+163,362
+163,362
+163,362
+163,364
+163,365
+163,367
+163,367
+163,367
+163,367
+163,368
+163,368
+163,368
+163,369
+163,369
+163,369
+163,370
+163,370
+163,371
+163,372
+163,374
+164,374
+164,375
+164,375
+164,376
+164,377
+164,379
+164,380
+164,380
+164,381
+164,382
+164,383
+164,385
+164,385
+164,385
+164,387
+164,387
+164,387
+164,388
+164,388
+164,388
+164,388
+164,389
+164,389
+164,390
+164,390
+165,390
+165,391
+165,391
+165,392
+165,392
+165,392
+165,393
+165,393
+165,393
+165,393
+165,393
+165,395
+165,396
+165,396
+165,396
+165,396
+165,396
+165,397
+165,397
+165,397
+165,397
+165,398
+165,398
+165,400
+165,400
+166,401
+166,402
+166,402
+166,402
+166,402
+166,402
+166,402
+166,402
+166,402
+166,403
+166,404
+166,404
+166,404
+166,406
+166,406
+166,406
+166,407
+166,407
+166,408
+166,408
+166,409
+166,409
+166,410
+167,410
+167,411
+167,411
+167,411
+167,411
+167,414
+167,414
+167,416
+167,416
+167,416
+167,416
+167,417
+167,417
+167,419
+167,420
+167,421
+167,422
+167,423
+167,423
+167,423
+167,423
+168,423
+168,423
+168,424
+168,425
+168,425
+168,425
+168,427
+168,428
+168,429
+168,429
+168,430
+168,431
+168,431
+168,432
+168,432
+168,433
+168,434
+168,434
+168,434
+168,435
+168,435
+168,435
+168,436
+168,436
+168,437
+168,438
+168,439
+168,439
+169,439
+169,439
+169,439
+169,439
+169,441
+169,441
+169,441
+169,441
+169,441
+169,442
+169,443
+169,443
+169,444
+169,444
+169,444
+169,444
+169,446
+169,446
+169,446
+169,446
+169,448
+169,448
+169,449
+169,449
+169,450
+169,450
+169,451
+170,451
+170,452
+170,453
+170,453
+170,455
+170,455
+170,456
+170,457
+170,457
+170,459
+170,459
+170,459
+170,459
+170,460
+170,460
+170,461
+170,462
+170,463
+170,463
+170,464
+170,464
+170,465
+170,466
+170,467
+170,467
+170,467
+170,468
+170,468
+170,468
+170,469
+170,469
+170,470
+170,471
+170,471
+171,472
+171,473
+171,473
+171,473
+171,474
+171,474
+171,474
+171,475
+171,475
+171,476
+171,476
+171,476
+171,477
+171,477
+171,478
+171,478
+171,479
+171,479
+171,480
+171,480
+171,481
+171,481
+171,481
+171,482
+171,482
+171,482
+171,483
+171,483
+171,483
+172,484
+172,484
+172,484
+172,485
+172,485
+172,485
+172,485
+172,485
+172,487
+172,487
+172,487
+172,488
+172,488
+172,488
+172,488
+172,488
+172,489
+172,489
+172,490
+172,490
+172,490
+172,491
+172,491
+172,491
+172,493
+172,494
+172,494
+173,494
+173,494
+173,495
+173,496
+173,496
+173,496
+173,497
+173,497
+173,497
+173,497
+173,498
+173,498
+173,499
+173,499
+173,500
+173,500
+173,500
+173,Failed to suppress
+173,Failed to suppress
+173,Failed to suppress
+173,Failed to suppress
+173,Failed to suppress
+173,Failed to suppress
+173,Failed to suppress
+173,Failed to suppress
+173,Failed to suppress
+173,Failed to suppress
+173,Failed to suppress
+173,Failed to suppress
+173,Failed to suppress
+173,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+174,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+175,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+176,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+177,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+178,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+179,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+180,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+181,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+182,Failed to suppress
+183,Failed to suppress
+183,Failed to suppress
+183,Failed to suppress
+183,Failed to suppress
+183,Failed to suppress
+183,Failed to suppress
+183,Failed to suppress
+183,Failed to suppress
+183,Failed to suppress
+183,Failed to suppress
+183,Failed to suppress
+183,Failed to suppress
+183,Failed to suppress
+184,Failed to suppress
+184,Failed to suppress
+184,Failed to suppress
+184,Failed to suppress
+184,Failed to suppress
+184,Failed to suppress
+184,Failed to suppress
+184,Failed to suppress
+184,Failed to suppress
+184,Failed to suppress
+184,Failed to suppress
+184,Failed to suppress
+184,Failed to suppress
+184,Failed to suppress
+184,Failed to suppress
+184,Failed to suppress
+184,Failed to suppress
+184,Failed to suppress
+184,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+185,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+186,Failed to suppress
+187,Failed to suppress
+187,Failed to suppress
+187,Failed to suppress
+187,Failed to suppress
+187,Failed to suppress
+187,Failed to suppress
+187,Failed to suppress
+187,Failed to suppress
+187,Failed to suppress
+187,Failed to suppress
+187,Failed to suppress
+187,Failed to suppress
+187,Failed to suppress
+187,Failed to suppress
+187,Failed to suppress
+187,Failed to suppress
+187,Failed to suppress
+187,Failed to suppress
+187,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+188,Failed to suppress
+189,Failed to suppress
+189,Failed to suppress
+189,Failed to suppress
+189,Failed to suppress
+189,Failed to suppress
+189,Failed to suppress
+189,Failed to suppress
+189,Failed to suppress
+189,Failed to suppress
+189,Failed to suppress
+189,Failed to suppress
+189,Failed to suppress
+189,Failed to suppress
+189,Failed to suppress
+190,Failed to suppress
+190,Failed to suppress
+190,Failed to suppress
+190,Failed to suppress
+190,Failed to suppress
+190,Failed to suppress
+190,Failed to suppress
+190,Failed to suppress
+190,Failed to suppress
+190,Failed to suppress
+190,Failed to suppress
+190,Failed to suppress
+190,Failed to suppress
+190,Failed to suppress
+190,Failed to suppress
+190,Failed to suppress
+190,Failed to suppress
+190,Failed to suppress
+190,Failed to suppress
+191,Failed to suppress
+191,Failed to suppress
+191,Failed to suppress
+191,Failed to suppress
+191,Failed to suppress
+191,Failed to suppress
+191,Failed to suppress
+191,Failed to suppress
+191,Failed to suppress
+191,Failed to suppress
+191,Failed to suppress
+191,Failed to suppress
+191,Failed to suppress
+192,Failed to suppress
+192,Failed to suppress
+192,Failed to suppress
+192,Failed to suppress
+192,Failed to suppress
+192,Failed to suppress
+192,Failed to suppress
+192,Failed to suppress
+193,Failed to suppress
+193,Failed to suppress
+193,Failed to suppress
+193,Failed to suppress
+193,Failed to suppress
+193,Failed to suppress
+193,Failed to suppress
+193,Failed to suppress
+193,Failed to suppress
+193,Failed to suppress
+193,Failed to suppress
+193,Failed to suppress
+193,Failed to suppress
+194,Failed to suppress
+194,Failed to suppress
+194,Failed to suppress
+194,Failed to suppress
+194,Failed to suppress
+194,Failed to suppress
+194,Failed to suppress
+194,Failed to suppress
+194,Failed to suppress
+194,Failed to suppress
+194,Failed to suppress
+194,Failed to suppress
+194,Failed to suppress
+195,Failed to suppress
+195,Failed to suppress
+195,Failed to suppress
+195,Failed to suppress
+195,Failed to suppress
+195,Failed to suppress
+196,Failed to suppress
+196,Failed to suppress
+196,Failed to suppress
+196,Failed to suppress
+196,Failed to suppress
+196,Failed to suppress
+196,Failed to suppress
+196,Failed to suppress
+196,Failed to suppress
+196,Failed to suppress
+196,Failed to suppress
+197,Failed to suppress
+197,Failed to suppress
+197,Failed to suppress
+197,Failed to suppress
+197,Failed to suppress
+197,Failed to suppress
+197,Failed to suppress
+197,Failed to suppress
+198,Failed to suppress
+198,Failed to suppress
+198,Failed to suppress
+198,Failed to suppress
+198,Failed to suppress
+198,Failed to suppress
+199,Failed to suppress
+199,Failed to suppress
+199,Failed to suppress
+199,Failed to suppress
+199,Failed to suppress
+199,Failed to suppress
+199,Failed to suppress
+199,Failed to suppress
+199,Failed to suppress
+199,Failed to suppress
+199,Failed to suppress
+200,Failed to suppress
+200,Failed to suppress
+200,Failed to suppress
+200,Failed to suppress
+200,Failed to suppress
+200,Failed to suppress
+201,Failed to suppress
+201,Failed to suppress
+201,Failed to suppress
+201,Failed to suppress
+201,Failed to suppress
+201,Failed to suppress
+201,Failed to suppress
+202,Failed to suppress
+202,Failed to suppress
+202,Failed to suppress
+202,Failed to suppress
+203,Failed to suppress
+203,Failed to suppress
+203,Failed to suppress
+203,Failed to suppress
+203,Failed to suppress
+203,Failed to suppress
+204,Failed to suppress
+204,Failed to suppress
+204,Failed to suppress
+204,Failed to suppress
+205,Failed to suppress
+205,Failed to suppress
+205,Failed to suppress
+205,Failed to suppress
+206,Failed to suppress
+206,Failed to suppress
+206,Failed to suppress
+206,Failed to suppress
+206,Failed to suppress
+207,Failed to suppress
+207,Failed to suppress
+207,Failed to suppress
+207,Failed to suppress
+208,Failed to suppress
+208,Failed to suppress
+208,Failed to suppress
+209,Failed to suppress
+209,Failed to suppress
+209,Failed to suppress
+210,Failed to suppress
+210,Failed to suppress
+210,Failed to suppress
+210,Failed to suppress
+210,Failed to suppress
+210,Failed to suppress
+211,Failed to suppress
+211,Failed to suppress
+211,Failed to suppress
+211,Failed to suppress
+212,Failed to suppress
+213,Failed to suppress
+213,Failed to suppress
+214,Failed to suppress
+215,Failed to suppress
+216,Failed to suppress
+216,Failed to suppress
+216,Failed to suppress
+217,Failed to suppress
+218,Failed to suppress
+221,Failed to suppress
+222,Failed to suppress
+222,Failed to suppress
+224,Failed to suppress
+224,Failed to suppress
+225,Failed to suppress
+226,Failed to suppress
+226,Failed to suppress
+227,Failed to suppress
+227,Failed to suppress
+228,Failed to suppress
+233,Failed to suppress
+239,Failed to suppress
+260,Failed to suppress
+274,Failed to suppress
